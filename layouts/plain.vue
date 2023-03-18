@@ -1,18 +1,22 @@
 <template>
     <Loader color="#2196F3" ></Loader>                     
-    <div class="majorContainer">
+    <div class="majorContainer" id="majorContainer">
         <nav>
-            <NuxtLink to="/" class="nav-link">Home</NuxtLink>
-            <NuxtLink to="/locator" class="nav-link">Iftar Locator</NuxtLink>
-            <NuxtLink to="/organizer" class="nav-link">Organizer Page</NuxtLink>
-            <NuxtLink to="/setup_meal" class="nav-link">About Us</NuxtLink>
+            <NuxtLink to="/" :class="[(route.name=='/'?'nav-link activeRoute':''),'nav-link ']">Home</NuxtLink>
+            <NuxtLink to="/locator"  :class="[(route.name=='locator'?'nav-link activeRoute':''),'nav-link ']">Iftar Locator</NuxtLink>
+            <NuxtLink to="/organizer" :class="[(route.name=='organizer'?'nav-link activeRoute':''),'nav-link ']">Organizer Page</NuxtLink>
+            <NuxtLink  class="nav-link">About Us</NuxtLink>
         </nav>   
         <img class="logo" src="/iftarConnect.png">
+        <b style="text-transform:capitalize">:: {{route.name.replaceAll('_',' ')}} ::</b>
         <div class="innerContainer">                
             <slot>    </slot>
         </div>    
     </div>
 </template>
+<script setup>
+    const route = useRoute()
+</script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
@@ -114,6 +118,10 @@ nav .nav-link{
 }
 nav .nav-link:hover{
     color:#555;
+}
+
+.activeRoute{
+    color:#555 !important;
 }
 a,p,div,span{
     font-family: Oxygen;

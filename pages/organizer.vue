@@ -47,18 +47,19 @@ import Swal from 'sweetalert2'
         confirmButtonText: 'Look up',
         showLoaderOnConfirm: true,
         preConfirm: async (login) => {
-            let res  = await $api.postData('http://iftarconnect.com',{phone_number:login})
+          /*   let res  = await $api.postData('http://iftarconnect.com',{phone_number:login})
             throw new Error(res.responseBody)
             if(res.error){
-            }
+            } */
             return true;
         },
         //allowOutsideClick: () => !Swal.isLoading()
         }).then((result) => {
-        if (result.isConfirmed) {
+            navigateTo("/setup_meal")
+        /* if (result.isConfirmed) {
             Swal.fire('Checked Passed')
             navigateTo('meal')
-        }
+        } */
         })
 
     }

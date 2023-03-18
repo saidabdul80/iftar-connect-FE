@@ -14,35 +14,63 @@
             </v-card-text>
         </v-card>
     </v-dialog> 
-    <v-table>
-    <thead>
-      <tr>
-        <th class="text-left">S/N</th>
-        <th class="text-left">Name</th>
-        <th class="text-left">Number</th>
-        <th class="text-left">Address</th>
-        <th class="text-left">Slot</th>
-        <th class="text-left">address Link</th>
-        <th class="text-left">Date</th>
-        <th class="text-left">#</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(item,i) in meals" :key="item.name">
-        <td>{{ i+1 }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.number }}</td>
-        <td>{{ item.address }}</td>
-        <td>{{ item.slot }}</td>
-        <td><NuxtLink :to="item.address_url" target="_blank" class="underlined">Open</NuxtLink></td>
-        <td>From: {{ item.from  }} | To: {{ item.to }} </td>
-        <td>
-            <v-btn @click="onEdit(item)" size="small" class="text-white mx-2" color="orange"><v-icon icon="edit"></v-icon> Edit</v-btn>
-            <v-btn @click="onDelete(item)" size="small" class="text-white mx-2" color="orange"><v-icon icon="trash"></v-icon>x</v-btn>
-        </td>
-      </tr>
-    </tbody>
-  </v-table>
+    <v-table density="compact" fixed-header> 
+        <thead>
+        <tr>
+            <th class="text-left">S/N</th>          
+            <th class="text-left">Meal</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(item, i) in meals" :key="item.name">
+                <td>{{ i+1 }}</td>
+                <td >                
+                    <v-row style="    overflow: auto;height: 102px;">                    
+                        <v-col cols="6"  md="4" lg="2" xl="1" v-for="key in Object.keys(item)" :key="key" >
+                            <div ><b class="text-left">{{ key }}</b></div>
+                            <p>{{ item[key] }}</p>
+                        </v-col>                   
+                    </v-row>
+                </td>
+                <td>                    
+                <v-btn @click="onEdit(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-arrow-down-thick"></v-icon> </v-btn><br>
+                <v-btn @click="onEdit(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-text-box-edit-outline"></v-icon> </v-btn><br>
+                <v-btn @click="onDelete(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-delete"></v-icon></v-btn><br>
+                </td>
+            </tr>
+        </tbody>
+    </v-table>
+<!--     <v-table density="compact" fixed-header> 
+        <thead>
+        <tr>
+            <th class="text-left">S/N</th>
+            <th class="text-left">Name</th>
+            <th class="text-left">Number</th>
+            <th class="text-left">Address</th>
+            <th class="text-left">Slot</th>
+            <th class="text-left">address Link</th>
+            <th class="text-left">Date</th>
+            <th class="text-left">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item,i) in meals" :key="item.name">
+            <td>{{ i+1 }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.number }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.slot }}</td>
+            <td><NuxtLink :to="item.address_url" target="_blank" class="underlined">Open</NuxtLink></td>
+            <td>From: {{ item.from  }} | To: {{ item.to }} </td>
+            <td>
+                <v-btn @click="onEdit(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-arrow-down-thick"></v-icon> </v-btn>
+                <v-btn @click="onEdit(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-text-box-edit-outline"></v-icon> </v-btn>
+                <v-btn @click="onDelete(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-delete"></v-icon></v-btn>
+            </td>
+        </tr>
+        </tbody>
+    </v-table> -->
 </template>
 
 <script setup>
@@ -95,3 +123,8 @@
         }
     ])
 </script>
+<style >
+#majorContainer.majorContainer{
+    padding: 12% 2% !important;
+    }
+</style>

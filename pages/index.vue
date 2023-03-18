@@ -13,7 +13,7 @@
               <div>
                   <v-btn to="/locator" width="240" size="x-large" class="mt-10 text-white" color="#F5891B">Locate free Iftar</v-btn>
               </div>
-              <v-btn width="240" size="x-large" class="mt-5 text-white" color="green">Organize Iftar</v-btn>
+              <v-btn to="/organizer" width="240" size="x-large" class="mt-5 text-white" color="green">Organize Iftar</v-btn>
           </center>
       </div>
   </header>   
