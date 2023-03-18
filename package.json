@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
+    "nuxt": "^3.2.2"
+  },
+  "dependencies": {
+    "@fawmi/vue-google-maps": "0.9.67",
+    "@mdi/font": "^7.1.96",
+    "@pinia/nuxt": "^0.4.7",
+    "axios": "^1.3.4",
+    "date-fns": "^2.29.3",
+    "magic-string": "^0.30.0",
+    "pinia": "^2.0.32",
+    "sass": "^1.58.3",
+    "stable": "^0.1.8",
+    "sweetalert2": "^11.7.3",
+    "v-tooltip": "^2.1.3",
+    "vue3-xlsx": "^1.1.2",
+    "vuetify": "^3.1.4"
+  },
+  "overrides": {
+    "vue": "latest"
+  }
+}

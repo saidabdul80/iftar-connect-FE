@@ -1,0 +1,126 @@
+.main-background {
+    background-image: url(/parallax_05.png);
+    margin: 0px;
+    background-position: 0px 0px;
+}
+      
+.mh-25{
+    min-height: 25vh;
+}
+
+.mh-50{
+    min-height: 50vh;
+}
+
+.mh-75{
+    min-height: 75vh;
+}
+
+.mh-100{
+    min-height: 100vh;
+}
+
+.fs-1{
+    font-size: 1em;
+}
+
+.fs-0{
+    font-size: 0.9em;
+}
+.fs-1-1{
+    font-size: 1.1em;
+}
+.fs-1-2{
+    font-size: 1.2em;
+}
+.fs-1-3{
+    font-size: 1.3em;
+}
+
+.fs-1-4{
+    font-size: 1.4em;
+}
+
+.fs-1-5{
+    font-size: 1.5em;
+}
+
+.fs-2{
+    font-size: 2em;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #E0E0E0;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2196F3;
+  }
+  .shadow-1{
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 12px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px !important;    
+  }
+  .shadow-2{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 35px -10px !important;
+  }
+  
+
+  
+.label{
+    transition: all 0.4s;
+    position: absolute;
+    left: 0px;        
+    background: transparent;
+}
+.s-text-field{    
+    position: relative;
+    background: transparent;
+}
+.s-text-field input:focus {
+  outline: none;
+  border-top: 0px solid transparent;
+  border-left: 0px solid transparent;
+  border-right: 0px solid transparent;
+  border-bottom: 2px solid #4caf50;
+}
+.s-text-field input{   
+    background: transparent; 
+    outline: none;
+    border-top: 0px solid transparent;
+    border-left: 0px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 1px solid #333;
+    padding: 10px 12px;
+    font-size: 16px;
+    width: 100%;
+    padding-top:24px !important;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);    
+    transition: border-color 0.2s ease-in-out;
+}
+.s-text-field input:focus ~ label{
+    font-size: 10px;
+    top: -12px;
+    color:#4caf50;
+}
+
+.underlined, .underlined span{
+    text-decoration: underline;
+    color:#F5891B;
+    text-transform: capitalize;
+    font-weight: lighter;
+}
+.pac-container{
+    z-index: 10000 !important;
+}
