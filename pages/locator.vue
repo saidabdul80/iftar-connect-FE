@@ -23,12 +23,12 @@
                         <p class="foundation"><span class="content-x">Ihsan Multi Concept Nig. Ltd.</span></p>
                         <p><span class="text-green heading-x">Meal: </span> <NuxtLink to="https://www.google.com/search?tbm=isch&q=food: Pap and Momoi" target="_blank" class="underlined"><span class="content-x">Pap and Momoi</span></NuxtLink></p>
                         <p><span class="text-green heading-x">Address: </span><NuxtLink to="https://maps.google.com/?cid=14409576387546967387" target="_blank" class="underlined"> <span class="content-x">Kwangila Beside General Hospital</span></NuxtLink></p>                        
-                        <v-btn size="small"   color="green" class="mx-auto d-inline-block my-1">Make Reservation</v-btn>
                         <div class="display-type">
                             <p><span color="#F5891B" class="heading-x ">Date: </span><span class="content-x">Today, 5pm</span></p>
                             <p class="d-none d-sm-flex"  style="margin:0px 8px; width:3px;background:#ccc; height:inherit"></p>
                             <p><span color="#F5891B" class="heading-x">Available Slot: </span><span class="content-x">10</span></p>
                         </div>
+                        <v-btn size="small"   color="green" class="mx-auto d-inline-block my-1">Make Reservation</v-btn>
                     </div>
                 </div>
               <!--   <v-card class="shadow d-flex d-sm-none rounded-lg pt-2 pb-3 elevation-0 position-relative" >                                      
