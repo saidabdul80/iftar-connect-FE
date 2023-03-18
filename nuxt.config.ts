@@ -2,6 +2,7 @@ import formatRelativeWithOptions from "date-fns/esm/fp/formatRelativeWithOptions
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  target: 'static',
   ssr:false,
   runtimeConfig: {
     // The private keys which are only available server-sirde
@@ -27,6 +28,9 @@ export default defineNuxtConfig({
         
         define: {
           'process.env.DEBUG': true,
+        },
+        build: {
+          chunkSizeWarningLimit: 1600,
         },
       
       },      
