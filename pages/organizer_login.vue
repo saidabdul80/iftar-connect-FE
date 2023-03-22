@@ -3,7 +3,7 @@
       <v-dialog size="large" v-model="dialog" persistent width="auto" >
         <!-- <template v-slot:activator="{ props }"><v-btn> Open Dialog</v-btn></template> -->
         <v-form @submit.prevent ref="loginForm">
-        <v-card style="min-width: 350px;" class="pa-4">
+        <v-card style="max-width: 390px;width: 100%;" class="pa-4">
           <v-card-title class="text-h5">
            Enter Login Credentials
           </v-card-title>
