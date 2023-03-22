@@ -12,7 +12,7 @@ export const useUserStore = defineStore('userAuth', {
         token_expires:'',
         isLoading:false,        
         geoKey: "cc6c646a1177408d958cc9ac9a31bc81",
-        baseUrl: 'http://localhost:8000/api/v1'
+        baseUrl: 'https://api.iftarconnect.com/api/v1/'
     }),
     persist: true,
     getters: {
