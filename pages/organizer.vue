@@ -10,9 +10,10 @@
                 <GMapAutocomplete :rules="rules.name" aria-placeholder="" class="pa-0" @place_changed="setPlace"></GMapAutocomplete>               
                 <label :style="address!=''?{'font-size':'10px','top':'2px'}:{'top':'12px'}" class="label">Address</label>
         </div>
-        <v-text-field color="green" variant="underlined" :rules="rules.name" v-model="number"  class="mb-4" label="Contact Number"  hide-details="auto"></v-text-field>
+        <v-text-field color="green" variant="underlined" :rules="rules.name" v-model="phone_number"  class="mb-4" label="Contact Number"  hide-details="auto"></v-text-field>
+        <v-text-field color="green" variant="underlined" :rules="rules.name" v-model="password" class="mb-4" label="Password"  hide-details="auto"></v-text-field>
         <div class="d-flex justify-content-center flex-column align-center">
-            <v-btn type="submit" @click="login()" class="w-50 bg-green text-white mb-3  px-10" size="x-large">Submit</v-btn>
+            <v-btn type="submit" @click="submit()" class="w-50 bg-green text-white mb-3  px-10" size="x-large">Submit</v-btn>
             <v-btn type="submit" @click="organizerPage()" class="underlined bg-white elevation-0  px-10" size="x-large">Goto Organizer's Page</v-btn>            
         </div>
     </v-form>
@@ -23,9 +24,9 @@ import Swal from 'sweetalert2'
     const { $api } = useNuxtApp()
   const name = ref('')
   const address = ref('')
-  const number = ref()
+  const phone_number = ref()
   const loginForm = ref(null)
-  
+  const password = ref('');
   definePageMeta({
     layout: "plain",
   });
@@ -39,29 +40,8 @@ import Swal from 'sweetalert2'
         address.value = e.formatted_address
         cords.value = {lat: e.geometry.location.lat(), long:e.geometry.location.lng()}
     }
-    function organizerPage(){
-        Swal.fire({
-        title: 'Enter Contact Address',
-        input: 'text',        
-        showCancelButton: true,
-        confirmButtonText: 'Look up',
-        showLoaderOnConfirm: true,
-        preConfirm: async (login) => {
-          /*   let res  = await $api.postData('http://iftarconnect.com',{phone_number:login})
-            throw new Error(res.responseBody)
-            if(res.error){
-            } */
-            return true;
-        },
-        //allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-            navigateTo("/setup_meal")
-        /* if (result.isConfirmed) {
-            Swal.fire('Checked Passed')
-            navigateTo('meal')
-        } */
-        })
-
+    function organizerPage(){      
+      return navigateTo('/setup_meal')       
     }
   const rules ={
       name: [
@@ -79,9 +59,18 @@ import Swal from 'sweetalert2'
       } 
       return false
     }
-    async function login(){    
+    async function submit(){    
       if(await validate()){
-        $api.login({nicare_code:name.value, location:location.value});
+        let res  = await $api.postData('/organizers','POST',{phone_number:phone_number.value,name:name.value,address:address.value, password:password.value})
+            if(res.error){
+                Swal.fire('something went wrong, please try again')
+                return false
+            }        
+            await Swal.fire({
+              title: 'Created Successfully!',
+              text: ' Please Login with registered Phone Number and Password'})
+            return navigateTo('/setup_meal') 
+            
       }
       console.log(validate())
     }

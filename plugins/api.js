@@ -4,21 +4,22 @@ import 'sweetalert2/src/sweetalert2.scss'
 import { useUserStore } from '@/stores/userStore'
 import { useEndpointRoutesStore } from '@/stores/endpoints'
 import { differenceInSeconds } from 'date-fns'
+import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 import axios from 'axios'
 export default defineNuxtPlugin(nuxtApp => {  
-    const userStore = useUserStore() 
-    const ep = useEndpointRoutesStore() 
+    const userStore = useUserStore()     
+    const ep = useEndpointRoutesStore()     
     const  headers ={
         Authorization:"Bearer "+userStore.access_token,
         Accept: 'application/json', 
-        'Content-Type': 'application/json' 
+        'Content-type': 'application/x-www-form-urlencoded'
     }
-    let baseUrl = 'https://app.ngscha.ni.gov.ng/api/v1'
+    let baseUrl = 'http://localhost:8000/api/v1/'
     let api = {
-        login: async function(data=null){                         
-            userStore.isLoading = true               
-                const { data: response, error } = await useAsyncData('response', () => $fetch( `${baseUrl}${ep.LOGIN}`, {
+        login: async function(url,data={}){                         
+                 userStore.isLoading = true               
+                const { data: response, error } = await useAsyncData('response', () => $fetch( `${baseUrl}${url}`, {
                     method: 'post',                    
                     body: data,                       
                 }));  
@@ -31,16 +32,12 @@ export default defineNuxtPlugin(nuxtApp => {
                 }
                 
                 if(!response.value?.error){                    
-                    userStore.access_token = response.value.accessToken
-                    userStore.refresh_token =  response.value.refreshAcessToken
-                    userStore.logedInTime = Date.now();
-                    await navigateTo('/');        
-                    this.showAlert("Login successful")    
-                    //return true;                 
-                   // console.log(userStore)
+                    userStore.access_token = response.value.accessToken                    
+                    userStore.user = response.value.user                    
                 }else{
-                    this.showAlert(response.value.responseBody,'warning')    
+                    //this.showAlert(response.value.responseBody,'warning')    
                 }                
+                return response.value;
             },
         refreshTokenFunc: async function(){
             let response = await this.postData(ep.REFRESH_TOKEN,{refresh_token: userStore.refresh_token})
@@ -55,29 +52,36 @@ export default defineNuxtPlugin(nuxtApp => {
                 return false
             }
         },
-        postData: async function(url="",method,data={},type=true){ 
-            userStore.isLoading = true                           
+        postData: async function(url="",method,data=null,redir,type=true,forOrganizer= true){             
+            headers.Authorization = "Bearer "+userStore.access_token
+            if(!forOrganizer){
+                headers.Authorization ="Bearer "+userStore.beneficiary_access_token
+            }
+                userStore.isLoading = true                              
                 const { data: response } = await axios({
-                    url:`${baseUrl}${url}`,                     
+                    url:`${userStore.baseUrl}${url}`,                     
                     method: method,                    
-                    body: data,                                      
+                    data: data,                                      
                     headers:headers                
                 })  
                 userStore.isLoading = false       
                 
                 if(response.data?.error){
-                    await userStore.isAuthenticated()                    
-                    this.showAlert(response.data?.responsebody,'error')    
+                   //await userStore.isAuthenticated()                    
+                   if(response.data.status == 401){
+                    navigateTo(redir)
+                   }
+                   this.showAlert(response.data?.responsebody,'error')    
                 }
-                if(type){
-                    return response.value
+                if(type){                    
+                    return response
                 }              
 
                 this.showAlert(response.value,'success')
             },
         getData:async function(url="",data={}){ 
             userStore.isLoading = true               
-            return useAsyncData('response', () => $fetch( `${url}`, {
+            return useAsyncData('response', () => $fetch( `${userStore.baseUrl}${url}`, {
                     method: 'GET',                    
                    // body: data,   
                     //headers:headers                                   
