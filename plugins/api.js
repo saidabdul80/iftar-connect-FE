@@ -14,8 +14,8 @@ export default defineNuxtPlugin(nuxtApp => {
         Authorization:"Bearer "+userStore.access_token,
         Accept: 'application/json', 
         'Content-type': 'application/x-www-form-urlencoded'
-    }
-    let baseUrl = 'http://localhost:8000/api/v1/'
+    } 
+    let baseUrl = 'https://api.iftarconnect.com/api/v1'
     let api = {
         login: async function(url,data={}){                         
                  userStore.isLoading = true               
