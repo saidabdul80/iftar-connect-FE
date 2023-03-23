@@ -186,9 +186,9 @@ import axios from 'axios';
                 })            
     }
 
-    async function makeReservation(meal_id, login=false){        
-        if(store.beneficiary_access_token == '' && login == false){
-            if(await this.login()){
+    async function makeReservation(meal_id, logins=false){        
+        if(store.beneficiary_access_token == '' && logins == false){
+            if(await login()){
                 await reserve(meal_id)
             }
         }else{
