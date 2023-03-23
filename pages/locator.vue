@@ -1,5 +1,5 @@
 <template>
-    <v-btn v-if="store.beneficiary.beneficiary_access_token != ''" @click="showReservations()" size="small" style="padding:6px;width: 28px !important;height:28px !important; border-radius:20px; position:absolute;top:60px;right: 60px;font-size: 0.8em;" class="bg-orange text-white d-flex justify-center align-center">{{ store.beneficiary?.reservation_ids?.length }}</v-btn>
+    <v-btn v-if="store.beneficiary_access_token != '' " @click="showReservations()" size="small" style="padding:6px;width: 28px !important;height:28px !important; border-radius:20px; position:absolute;top:60px;right: 60px;font-size: 0.8em;" class="bg-orange text-white d-flex justify-center align-center">{{ store.beneficiary?.reservation_ids?.length }}</v-btn>
     <v-dialog size="large" v-model="dialog3" persistent width="auto" >
         <!-- <template v-slot:activator="{ props }"><v-btn> Open Dialog</v-btn></template> -->       
         <v-card style="min-width: 350px;" class="pa-4">
@@ -67,7 +67,7 @@
 
                             <v-spacer></v-spacer>
                             <div>
-                                <span class="distance-away" v-if="meal?.distance" ><b>{{ meal.distance?.toFixed(2) }}km away </b></span>                             
+                                <span class="distance-away" v-if="meal?.distance" ><b>{{ parseInt(meal.distance) }}km away </b></span>                             
                             </div>
                         </div>
                     </div>
@@ -180,6 +180,7 @@ import axios from 'axios';
                     if (result.isConfirmed) {
                     return true
                     }else{
+                        store.isLoading = false 
                     return false
                     }
                 })            

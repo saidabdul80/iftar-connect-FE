@@ -1,17 +1,20 @@
-import formatRelativeWithOptions from "date-fns/esm/fp/formatRelativeWithOptions";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({  
   ssr:false,
-  runtimeConfig: {
-    // The private keys which are only available server-sirde
-    apiSecret: '123',
-    // Keys within public are also exposed client-side
-    public: {
-      BASE_URL: 'https://app.ngscha.ni.gov.ng/api/v1'
-    },
-    pages: true,
-  },
+  target:'static',
+ 
+  /* generate: {
+    routes: [
+      '/index',
+      '/about',
+      '/locator',
+      '/meal',
+      '/organizer_login',
+      '/setup_meal',
+      '/sponsors',
+      '/terms',
+    ]
+  } */
   typescript: {
         shim: false
       }, 
