@@ -58,8 +58,14 @@
                         <div>
                             <p class="foundation"><span class="content-x">{{ meal.organizer.name }}</span></p>
                             <p><span class="text-green heading-x">Meal: </span> <NuxtLink :to="'https://www.google.com/search?tbm=isch&q=food:'+meal.meal_type" target="_blank" class="underlined"><span class="content-x">{{meal.meal_type}}</span></NuxtLink></p>
-                            <p><span class="text-green heading-x">Location: </span><span> {{meal.landmark}}</span></p>
-                            <p><span class="text-green heading-x">Address: </span><NuxtLink :to="meal.address_url" target="_blank" class="underlined"> <span class="content-x">{{ meal.address.slice(0,40) }}...</span></NuxtLink></p>                        
+                            <p><span class="text-green heading-x">Location: </span><span> {{meal.landmark.slice(0,25)}}...
+                                <v-tooltip activator="parent" location="top">{{ meal.landmark }}</v-tooltip>
+                            </span></p>
+                            <v-tooltip :text="meal.address" location="top">
+                                <template v-slot:activator="{ props }">
+                                    <p v-bind="props"><span class="text-green heading-x">Address: </span><NuxtLink :to="meal.address_url" target="_blank" class="underlined"> <span class="content-x">{{ meal.address.slice(0,25) }}...</span></NuxtLink></p>                        
+                                </template>
+                            </v-tooltip>
                             <div class="display-type">
                                 <p><span color="#F5891B" class="heading-x ">Date: Today </span><span class="content-x">{{ tConvert(meal?.time_slot) }}</span></p>
                                 <p class="d-none d-sm-flex"  style="margin:0px 8px; width:3px;background:#ccc; height:inherit"></p>
@@ -155,11 +161,14 @@ import axios from 'axios';
         }
     async function searchLocation(){
         let $this = this
-        if(this.address==''){
-            Swal.fire("Enter a location or an address phrase")
-            return false
-        }
-        searchMeal(cords.value.long,cords.value.lat)
+        try{
+
+            if(address.value ==''){
+                Swal.fire("Enter a location or an address phrase")
+                return false
+            }
+            searchMeal(cords.value.long,cords.value.lat)
+        }catch(e){}
         //fetch data
     }
     //store.beneficiary.reservation_ids =[];
@@ -216,6 +225,7 @@ import axios from 'axios';
             await reserve(meal_id)
         }
     }    
+ 
     store.resetStore()
     async  function reserve(meal_id){
         try{                    
