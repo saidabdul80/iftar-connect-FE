@@ -6,6 +6,7 @@ export const useUserStore = defineStore('userAuth', {
         user:{},     
         beneficiary:{},   
         access_token:'',
+        todaysDate:'',
         beneficiary_access_token:'',
         refresh_token:'',
         logedInTime:'2015-02-01 01:02:00',
@@ -25,7 +26,24 @@ export const useUserStore = defineStore('userAuth', {
                 return false
             }                     
         },
-      
+        clearData(){
+            this.$state.user ={}
+            this.$state.beneficiary ={}
+            this.$state.access_token =""
+            this.$state.beneficiary_access_token =""
+        },
+        resetStore(){
+            const date = new Date().toLocaleDateString()
+            if(this.$state.todaysDate == ''){
+                this.$state.todaysDate = date
+                this.clearData()
+            }else{
+                if(this.$state.todaysDate != date){
+                    this.$state.todaysDate = date
+                    this.clearData()
+                }
+            }
+        },
         increment() {
         
         },

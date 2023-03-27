@@ -14,9 +14,11 @@
         <v-text-field color="green" variant="underlined" :rules="rules.name" v-model="password" class="mb-4" label="Password"  hide-details="auto"></v-text-field>
         <div class="d-flex justify-content-center flex-column align-center">
             <v-btn type="submit" @click="submit()" class="w-50 bg-green text-white mb-3  px-10" size="x-large">Submit</v-btn>
-            <v-btn type="submit" @click="organizerPage()" class="underlined bg-white elevation-0  px-10" size="x-large">Goto Organizer's Page</v-btn>            
+          </div>
+        </v-form>        
+        <div class="d-flex justify-content-center flex-column align-center">
+        <v-btn type="submit" @click="organizerPage()" class="underlined bg-white elevation-0  px-10" size="x-large">Goto Organizer's Page</v-btn>                    
         </div>
-    </v-form>
 </template>
 
 <script setup>

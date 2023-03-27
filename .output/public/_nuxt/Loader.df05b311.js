@@ -1,1 +1,0 @@
-import{h as t,O as _,k as a,u as r,o as c,a as n,m as p}from"./entry.2d6b1787.js";const d={key:0,class:"loader"},u={__name:"Loader",props:{color:String},setup(e){_(o=>({"6d4e21f7":e.color}));const s=a();return(o,l)=>r(s).isLoading?(c(),n("span",d)):p("",!0)}},f=t(u,[["__scopeId","data-v-f4a23390"]]);export{f as _};

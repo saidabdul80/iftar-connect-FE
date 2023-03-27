@@ -76,11 +76,26 @@
   }
   
 
+  .pac-target-input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #fff;
+}
+.pac-target-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #fff;
+    opacity:  1;
+}
+.pac-target-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+    opacity:  1;
+}
+.pac-target-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #fff;
+}
   
 .label{
     transition: all 0.4s;
     position: absolute;
     left: 0px;        
+    color:#777;
     background: transparent;
 }
 .s-text-field{    

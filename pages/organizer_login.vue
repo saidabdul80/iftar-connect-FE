@@ -10,7 +10,7 @@
             <p v-if="showError" class="text-center text-red bg-red-lighten-5">Invalid Credentials</p>
           <v-card-text>
             <v-text-field color="green" variant="underlined" :rules="rules.name" v-model="phone_number" class="mb-4" label="Phone Number"  hide-details="auto"></v-text-field>
-            <v-text-field color="green" variant="underlined" type="password" :rules="rules.name" v-model="password" class="mb-4" label="Phone Number"  hide-details="auto"></v-text-field>
+            <v-text-field color="green" variant="underlined" type="password" :rules="rules.name" v-model="password" class="mb-4" label="Password"  hide-details="auto"></v-text-field>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>

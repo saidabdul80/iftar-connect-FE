@@ -1,0 +1,1 @@
+import{_ as t}from"./Loader.1c09d3ba.js";import{h as n,o as r,a,e as c,M as s,F as _}from"./entry.b15e0e18.js";const l={};function m(e,f){const o=t;return r(),a(_,null,[c(o,{color:"#2196F3"}),s(e.$slots,"default")],64)}const u=n(l,[["render",m]]);export{u as default};

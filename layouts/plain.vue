@@ -23,7 +23,7 @@
                 </v-menu>
         </nav>   
         <img class="logo" src="/iftarConnect.png">
-        <b style="text-transform:capitalize">:: {{route.name.replaceAll('_',' ')}} ::</b>
+        
         <div class="innerContainer">                
             <slot>    </slot>
         </div>    

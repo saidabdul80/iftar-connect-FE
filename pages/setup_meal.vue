@@ -23,7 +23,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green-darken-1" variant="text" @click="dialog3= false">Close</v-btn>            
+            <v-btn color="green-darken-1" variant="text" @click="dialog2= false">Close</v-btn>            
           </v-card-actions>
         </v-card>        
       </v-dialog>
@@ -32,14 +32,15 @@
         <template v-maximum_capacity:activator="{ props }">
         </template>
         <v-card>
-            <v-card-title>
+            <v-card-title class="position-relative">
                 <center>
-                    <h1 class="text-green mt-2 mb-8">{{ title }} Iftar Meal</h1>
+                    <h3 class="text-green mt-2 mb-8" style="text-transform: uppercase;">{{ title }} IFTAR MEAL</h3>
                 </center>
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="pb-0 position-relative">
                 <Meal :meal="meal" :update="update" @saveEvent="mealFunc($event)"></Meal>
-            </v-card-text>
+                <v-btn style="position:absolute;right:10px;bottom: 10px;" color="green-darken-1" variant="text" @click="dialog= false">Close</v-btn>                        
+            </v-card-text>            
         </v-card>
     </v-dialog> 
     <v-table density="compact" fixed-header> 
@@ -70,36 +71,6 @@
             </tr>
         </tbody>
     </v-table>
-<!--     <v-table density="compact" fixed-header> 
-        <thead>
-        <tr>
-            <th class="text-left">S/N</th>
-            <th class="text-left">Name</th>
-            <th class="text-left">phone_number</th>
-            <th class="text-left">Address</th>
-            <th class="text-left">maximum_capacity</th>
-            <th class="text-left">address Link</th>
-            <th class="text-left">Date</th>
-            <th class="text-left">#</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(item,i) in meals" :key="item.name">
-            <td>{{ i+1 }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.phone_number }}</td>
-            <td>{{ item.address }}</td>
-            <td>{{ item.maximum_capacity }}</td>
-            <td><NuxtLink :end_date="item.address_url" target="_blank" class="underlined">Open</NuxtLink></td>
-            <td>start_date: {{ item.start_date  }} | To: {{ item.end_date }} </td>
-            <td>
-                <v-btn @click="onEdit(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-arrow-down-thick"></v-icon> </v-btn>
-                <v-btn @click="onEdit(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-text-box-edit-outline"></v-icon> </v-btn>
-                <v-btn @click="onDelete(item)" size="small" class="px-0 text-white mx-1 mt-2" color="orange"><v-icon icon="mdi-delete"></v-icon></v-btn>
-            </td>
-        </tr>
-        </tbody>
-    </v-table> -->
 </template>
 
 <script setup>
@@ -122,6 +93,8 @@ const {$api } = useNuxtApp()
         'maximum_capacity',
   ])
   const dialog = ref(false)
+  const dialog2 = ref(false)
+
   const update = ref(false)
   const title = ref('Setup')
   const reservations = ref([])
